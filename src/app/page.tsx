@@ -417,7 +417,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="font-semibold mb-2">Support réactif</h3>
-                  <p className="text-sm text-gray-400">Une question ou un problème ? Contactez-nous à contact@aibusinessplan.fr, réponse sous 48h.</p>
+                  <p className="text-sm text-gray-400">Une question ou un problème ? Contactez-nous à contact.aibusinessplan@gmail.com, réponse sous 48h.</p>
                 </div>
               </div>
             </div>
@@ -519,7 +519,7 @@ export default function Home() {
               <a href="/cgv" className="hover:text-gray-300 transition-colors">CGV</a>
               <a href="/confidentialite" className="hover:text-gray-300 transition-colors">Politique de confidentialité</a>
               <a href="#faq" className="hover:text-gray-300 transition-colors">FAQ</a>
-              <a href="mailto:contact@aibusinessplan.fr" className="hover:text-gray-300 transition-colors">contact@aibusinessplan.fr</a>
+              <a href="mailto:contact.aibusinessplan@gmail.com" className="hover:text-gray-300 transition-colors">contact.aibusinessplan@gmail.com</a>
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-600">

@@ -78,7 +78,7 @@ export default function CGV() {
             <h2 className="text-lg font-semibold text-white mb-3">8. Service client</h2>
             <p>
               Pour toute question relative à votre commande, vous pouvez nous contacter à l&apos;adresse :
-              contact@aibusinessplan.fr. Nous nous engageons à répondre sous 48h ouvrées.
+              contact.aibusinessplan@gmail.com. Nous nous engageons à répondre sous 48h ouvrées.
             </p>
           </section>
 

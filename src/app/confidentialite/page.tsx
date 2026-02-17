@@ -11,7 +11,7 @@ export default function Confidentialite() {
             <h2 className="text-lg font-semibold text-white mb-3">1. Responsable du traitement</h2>
             <p>
               Le responsable du traitement des données personnelles est :<br />
-              Nada El Aouad — contact@aibusinessplan.fr
+              Nada El Aouad — contact.aibusinessplan@gmail.com
             </p>
           </section>
 
@@ -85,7 +85,7 @@ export default function Confidentialite() {
               <li><strong className="text-gray-300">Droit d&apos;opposition :</strong> vous opposer au traitement de vos données</li>
             </ul>
             <p className="mt-3">
-              Pour exercer ces droits, contactez-nous à : contact@aibusinessplan.fr.
+              Pour exercer ces droits, contactez-nous à : contact.aibusinessplan@gmail.com.
               Vous disposez également du droit d&apos;introduire une réclamation auprès de la CNIL (cnil.fr).
             </p>
           </section>

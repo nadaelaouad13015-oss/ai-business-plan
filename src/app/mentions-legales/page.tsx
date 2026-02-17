@@ -13,7 +13,7 @@ export default function MentionsLegales() {
               Le site AI Business Plan est édité par :<br />
               Nada El Aouad<br />
               Statut : Entrepreneur individuel<br />
-              Email : contact@aibusinessplan.fr
+              Email : contact.aibusinessplan@gmail.com
             </p>
           </section>
 
