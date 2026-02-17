@@ -42,9 +42,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: checkoutSession.url });
   } catch (error) {
-    console.error("Erreur checkout:", error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.error("Erreur checkout:", errMsg);
     return NextResponse.json(
-      { error: "Erreur lors de la création du paiement" },
+      { error: "Erreur lors de la création du paiement", details: errMsg },
       { status: 500 }
     );
   }
