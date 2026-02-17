@@ -1,5 +1,5 @@
-// Client IA via OpenRouter (compatible OpenAI API)
-// Utilise DeepSeek Chat — rapide, bon marché, excellent pour le texte long
+// Client IA via OpenRouter
+// Utilise Claude Sonnet 4.5 — meilleur raisonnement stratégique, contenu premium
 
 export async function generateWithClaude(prompt: string): Promise<string> {
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -9,12 +9,13 @@ export async function generateWithClaude(prompt: string): Promise<string> {
       Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "deepseek/deepseek-chat",
+      model: "anthropic/claude-sonnet-4",
       max_tokens: 16000,
       messages: [
         {
           role: "system",
-          content: "Tu es un expert en stratégie business. Tu DOIS toujours terminer ta réponse complètement. N'écris JAMAIS 'suite dans le prochain message', 'à suivre', 'suite...', ou toute indication que la réponse continue ailleurs. Si tu manques de place, condense les dernières sections mais termine TOUJOURS le document en entier jusqu'à la fin.",
+          content:
+            "Tu es un cabinet de conseil en stratégie business de premier plan. Tu produis des rapports stratégiques de qualité premium en français. Tu DOIS toujours terminer ta réponse complètement — ne coupe jamais un document en cours.",
         },
         { role: "user", content: prompt },
       ],
@@ -27,12 +28,5 @@ export async function generateWithClaude(prompt: string): Promise<string> {
   }
 
   const data = await res.json();
-  let content: string = data.choices[0].message.content;
-
-  // Nettoyer les phrases de coupure que DeepSeek ajoute parfois
-  content = content.replace(/\n*\*?\*?\(?\s*suite\s*(dans le prochain message|au prochain message|\.{2,})\s*\)?\*?\*?\s*$/i, "");
-  content = content.replace(/\n*\*?\*?\(?\s*à suivre\s*\.{0,3}\s*\)?\*?\*?\s*$/i, "");
-  content = content.replace(/\n*---\s*\n*\s*\*?\*?Suite\b.*$/i, "");
-
-  return content;
+  return data.choices[0].message.content;
 }
