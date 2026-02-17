@@ -5,9 +5,8 @@ import { generateWithClaude } from "@/lib/claude";
 import { buildFullPlanPrompt } from "@/lib/prompt";
 import { UserProfile } from "@/lib/types";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-01-28.clover",
-});
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!) as any;
 
 // POST /api/webhook — Webhook Stripe pour confirmer le paiement
 // Déclenche la génération du plan complet uniquement après paiement réussi
