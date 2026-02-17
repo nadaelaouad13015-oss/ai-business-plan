@@ -10,8 +10,14 @@ export async function generateWithClaude(prompt: string): Promise<string> {
     },
     body: JSON.stringify({
       model: "deepseek/deepseek-chat",
-      max_tokens: 12000,
-      messages: [{ role: "user", content: prompt }],
+      max_tokens: 16000,
+      messages: [
+        {
+          role: "system",
+          content: "Tu es un expert en stratégie business. Tu DOIS toujours terminer ta réponse complètement. N'écris JAMAIS 'suite dans le prochain message', 'à suivre', 'suite...', ou toute indication que la réponse continue ailleurs. Si tu manques de place, condense les dernières sections mais termine TOUJOURS le document en entier jusqu'à la fin.",
+        },
+        { role: "user", content: prompt },
+      ],
     }),
   });
 
@@ -21,5 +27,12 @@ export async function generateWithClaude(prompt: string): Promise<string> {
   }
 
   const data = await res.json();
-  return data.choices[0].message.content;
+  let content: string = data.choices[0].message.content;
+
+  // Nettoyer les phrases de coupure que DeepSeek ajoute parfois
+  content = content.replace(/\n*\*?\*?\(?\s*suite\s*(dans le prochain message|au prochain message|\.{2,})\s*\)?\*?\*?\s*$/i, "");
+  content = content.replace(/\n*\*?\*?\(?\s*à suivre\s*\.{0,3}\s*\)?\*?\*?\s*$/i, "");
+  content = content.replace(/\n*---\s*\n*\s*\*?\*?Suite\b.*$/i, "");
+
+  return content;
 }
