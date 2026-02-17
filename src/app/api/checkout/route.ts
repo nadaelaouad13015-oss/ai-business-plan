@@ -10,6 +10,11 @@ export async function POST(req: NextRequest) {
   try {
     const { sessionId } = await req.json();
 
+    // Construire l'URL de base à partir de la requête
+    const host = req.headers.get("host") || "localhost:3000";
+    const protocol = host.includes("localhost") ? "http" : "https";
+    const baseUrl = `${protocol}://${host}`;
+
     // Vérifier que le plan existe
     const plan = await getPlan(sessionId);
     if (!plan) {
@@ -33,10 +38,10 @@ export async function POST(req: NextRequest) {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/plan?session=${sessionId}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/?cancelled=true`,
+      success_url: `${baseUrl}/plan?session=${sessionId}`,
+      cancel_url: `${baseUrl}/?cancelled=true`,
       metadata: {
-        planSessionId: sessionId, // Pour retrouver le plan dans le webhook
+        planSessionId: sessionId,
       },
     });
 
