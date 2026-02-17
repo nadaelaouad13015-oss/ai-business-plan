@@ -40,7 +40,8 @@ export async function GET(req: NextRequest) {
       });
 
       const paidSession = sessions.data.find(
-        (s) => s.metadata?.planSessionId === sessionId && s.payment_status === "paid"
+        (s: { metadata?: Record<string, string>; payment_status?: string }) =>
+          s.metadata?.planSessionId === sessionId && s.payment_status === "paid"
       );
 
       if (paidSession) {
